@@ -1,0 +1,1 @@
+<p>Contoh penerpan multiple view yang dipanggil dari satu controller</p>
