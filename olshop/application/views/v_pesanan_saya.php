@@ -34,6 +34,45 @@
             <div class="card-body">
                 <div class="tab-content" id="custom-tabs-four-tabContent">
                     <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+                        <!-- /.data pesanan order -->
+                        <table class="table">
+                            <tr>
+                                <th>No Order</th>
+                                <th>Tanggal</th>
+                                <th>Expedisi</th>
+                                <th>Total Bayar</th>
+                                <th>Action</th>
+                            </tr>
+                            <?php
+                            foreach ($belum_bayar as $key => $value) { ?>
+                                <tr>
+                                    <td><?= $value->no_order ?></td>
+                                    <td><?= $value->tgl_order ?></td>
+                                    <td>
+                                        <b><?= $value->expedisi ?><br></b>
+                                        Paket : <?= $value->paket ?><br>
+                                        Ongkir : <?= number_format($value->ongkir, 0) ?><br>
+                                    </td>
+                                    <td>
+                                        <b>Rp. <?= number_format($value->total_bayar, 0) ?></b><br>
+                                        <?php if ($value->status_bayar == 0) { ?>
+                                            <span class="badge badge-danger">Belum Bayar</span>
+                                        <?php } else { ?>
+                                            <span class="badge badge-success">Sudah Bayar</span><br>
+                                            <span class="badge badge-info">Menunggu Verifikasi</span><br>
+                                        <?php } ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($value->status_bayar == 0) { ?>
+                                            <a href="<?= base_url('pesanan_saya/bayar/') . $value->id_transaksi ?>" class="btn btn-sm btn-flat btn-primary">Bayar</a>
+                                        <?php } ?>
+
+                                    </td>
+                                </tr>
+                            <?php } ?>
+
+                        </table>
+
                         <table class="table">
                             <tr>
                                 <th>No Order</th>
@@ -73,7 +112,33 @@
                         </table>
                     </div>
                     <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
+                        <!-- /.pesanan diproses -->
+                        <table class="table">
+                            <tr>
+                                <th>No Order</th>
+                                <th>Tanggal</th>
+                                <th>Expedisi</th>
+                                <th>Total Bayar</th>
+                            </tr>
+                            <?php
+                            foreach ($diproses as $key => $value) { ?>
+                                <tr>
+                                    <td><?= $value->no_order ?></td>
+                                    <td><?= $value->tgl_order ?></td>
+                                    <td>
+                                        <b><?= $value->expedisi ?><br></b>
+                                        Paket : <?= $value->paket ?><br>
+                                        Ongkir : <?= number_format($value->ongkir, 0) ?><br>
+                                    </td>
+                                    <td>
+                                        <b>Rp. <?= number_format($value->total_bayar, 0) ?></b><br>
+                                        <span class="badge badge-success">Terverifikasi</span><br>
+                                        <span class="badge badge-info">Diproses/Dikemas</span><br>
+                                    </td>
+                                </tr>
+                            <?php } ?>
 
+                        </table>
                     </div>
                     <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
                         Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna.
